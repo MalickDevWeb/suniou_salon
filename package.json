@@ -9,7 +9,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "smoke:local": "node ./scripts/smoke-local.mjs"
+    "smoke:local": "node ./scripts/smoke-local.mjs",
+    "android:setup": "bash ./scripts/setup-android-avd.sh",
+    "android:dev": "bash ./scripts/start-android-dev.sh"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",

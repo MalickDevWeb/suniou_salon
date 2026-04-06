@@ -60,6 +60,13 @@ Emulateur Android:
 npm run android
 ```
 
+Flux automatise:
+
+```bash
+npm run android:setup
+npm run android:dev
+```
+
 Si tu utilises un appareil Android physique, active le debogage USB puis verifie:
 
 ```bash
