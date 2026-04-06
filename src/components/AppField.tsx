@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, TextInputProps, View } from "react-native";
 
 import { colors, fontFamily, radius, spacing } from "../theme/tokens";
 
@@ -8,6 +8,9 @@ type Props = {
   onChangeText: (value: string) => void;
   placeholder?: string;
   secureTextEntry?: boolean;
+  keyboardType?: TextInputProps["keyboardType"];
+  autoCapitalize?: TextInputProps["autoCapitalize"];
+  autoCorrect?: boolean;
 };
 
 export const AppField = ({
@@ -15,7 +18,10 @@ export const AppField = ({
   value,
   onChangeText,
   placeholder,
-  secureTextEntry
+  secureTextEntry,
+  keyboardType,
+  autoCapitalize,
+  autoCorrect
 }: Props) => (
   <View style={styles.wrapper}>
     <Text style={styles.label}>{label}</Text>
@@ -25,6 +31,9 @@ export const AppField = ({
       placeholder={placeholder}
       placeholderTextColor={colors.muted}
       secureTextEntry={secureTextEntry}
+      keyboardType={keyboardType}
+      autoCapitalize={autoCapitalize}
+      autoCorrect={autoCorrect}
       style={styles.input}
     />
   </View>
@@ -39,12 +48,13 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs
   },
   input: {
-    backgroundColor: colors.white,
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
     borderColor: colors.line,
     borderRadius: radius.md,
     borderWidth: 1,
     color: colors.ink,
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md
+    paddingVertical: spacing.md,
+    fontFamily
   }
 });

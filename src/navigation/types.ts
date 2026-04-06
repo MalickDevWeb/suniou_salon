@@ -7,8 +7,21 @@ export type MainTabParamList = {
   Profile: undefined;
 };
 
+export type AuthIntent =
+  | "booking"
+  | "checkout"
+  | "orders"
+  | "profile"
+  | "workspace";
+
 export type RootStackParamList = {
-  Auth: undefined;
+  Auth:
+    | {
+        intent?: AuthIntent;
+        title?: string;
+        message?: string;
+      }
+    | undefined;
   Main: undefined;
   SalonDetails: { salon: SalonSummary };
   Booking: { salon: SalonSummary; service: ServiceItem };

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { useCartStore } from "../store/cartStore";
 import { formatXof } from "../utils/currency";
-import { colors, fontFamily, spacing } from "../theme/tokens";
+import { colors, fontFamily, radius, spacing } from "../theme/tokens";
 import { PrimaryButton } from "./PrimaryButton";
 
 export const CartBar = ({
@@ -24,6 +24,14 @@ export const CartBar = ({
 };
 
 const styles = StyleSheet.create({
-  wrapper: { gap: spacing.sm, marginTop: spacing.md },
+  wrapper: {
+    backgroundColor: colors.white,
+    borderColor: colors.blush,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    gap: spacing.sm,
+    marginTop: spacing.md,
+    padding: spacing.lg
+  },
   text: { color: colors.ink, fontFamily, fontWeight: "700" }
 });

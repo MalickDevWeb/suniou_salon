@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { AppField } from "../components/AppField";
+import { AuthPromptCard } from "../components/AuthPromptCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { ScreenShell } from "../components/ScreenShell";
 import { SectionCard } from "../components/SectionCard";
@@ -12,10 +14,15 @@ import {
   getMySalon,
   listOwnerBookings
 } from "../services/api/salons";
+import { useAuthStore } from "../store/authStore";
 import { colors, fontFamily, spacing } from "../theme/tokens";
 import { Booking, SalonRecord } from "../types/domain";
+import { RootStackParamList } from "../navigation/types";
 
-export const SalonWorkspaceScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, "SalonWorkspace">;
+
+export const SalonWorkspaceScreen = ({ navigation }: Props) => {
+  const user = useAuthStore((state) => state.user);
   const [mySalon, setMySalon] = useState<SalonRecord | null>(null);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [salonName, setSalonName] = useState("Mon salon");
@@ -26,9 +33,37 @@ export const SalonWorkspaceScreen = () => {
   const [productName, setProductName] = useState("Huile capillaire");
 
   useEffect(() => {
+    if (!user || user.role !== "SALON") return;
     getMySalon().then(setMySalon).catch(() => undefined);
     listOwnerBookings().then(setBookings).catch(() => undefined);
-  }, []);
+  }, [user]);
+
+  if (!user) {
+    return (
+      <ScreenShell>
+        <Text style={styles.kicker}>Espace salon</Text>
+        <Text style={styles.title}>Connecte-toi avec un compte salon pour gerer ton activite.</Text>
+        <AuthPromptCard
+          title="Acceder au back-office salon"
+          description="Creer des services, publier des produits et suivre les reservations recues."
+          actionLabel="Se connecter"
+          onPress={() => navigation.navigate("Auth", { intent: "workspace" })}
+        />
+      </ScreenShell>
+    );
+  }
+
+  if (user.role !== "SALON") {
+    return (
+      <ScreenShell>
+        <Text style={styles.kicker}>Espace salon</Text>
+        <Text style={styles.title}>Cet espace est reserve aux comptes salon.</Text>
+        <SectionCard>
+          <Text style={styles.line}>Connecte-toi avec un compte SALON pour gerer un etablissement.</Text>
+        </SectionCard>
+      </ScreenShell>
+    );
+  }
 
   const handleCreateSalon = async () => {
     const salon = await createSalonProfile({ name: salonName, address, latitude: Number(latitude), longitude: Number(longitude) });
@@ -50,6 +85,7 @@ export const SalonWorkspaceScreen = () => {
 
   return (
     <ScreenShell>
+      <Text style={styles.kicker}>Espace salon</Text>
       <Text style={styles.title}>Espace salon</Text>
       <SectionCard>
         <Text style={styles.line}>Profil: {mySalon?.name ?? "A creer"}</Text>
@@ -81,6 +117,7 @@ export const SalonWorkspaceScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  title: { color: colors.ink, fontFamily, fontSize: 28, fontWeight: "800", marginBottom: spacing.lg },
+  kicker: { color: colors.ember, fontFamily, fontWeight: "700", marginBottom: spacing.sm },
+  title: { color: colors.ink, fontFamily, fontSize: 34, fontWeight: "800", lineHeight: 40, marginBottom: spacing.lg },
   line: { color: colors.ink, fontFamily, marginBottom: spacing.xs }
 });

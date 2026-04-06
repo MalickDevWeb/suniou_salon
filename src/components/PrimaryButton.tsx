@@ -18,7 +18,12 @@ export const PrimaryButton = ({
   <Pressable
     disabled={loading}
     onPress={onPress}
-    style={[styles.button, tone === "secondary" ? styles.secondary : styles.primary]}
+    style={({ pressed }) => [
+      styles.button,
+      tone === "secondary" ? styles.secondary : styles.primary,
+      pressed && styles.pressed,
+      loading && styles.disabled
+    ]}
   >
     {loading ? (
       <ActivityIndicator color={tone === "secondary" ? colors.ink : colors.white} />
@@ -32,6 +37,7 @@ export const PrimaryButton = ({
 
 const styles = StyleSheet.create({
   button: {
+    alignSelf: "stretch",
     alignItems: "center",
     borderRadius: radius.pill,
     minHeight: 52,
@@ -40,6 +46,8 @@ const styles = StyleSheet.create({
   },
   primary: { backgroundColor: colors.pine },
   secondary: { backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
+  pressed: { transform: [{ scale: 0.99 }], opacity: 0.94 },
+  disabled: { opacity: 0.75 },
   label: { fontFamily, fontSize: 16, fontWeight: "700" },
   white: { color: colors.white },
   ink: { color: colors.ink }
