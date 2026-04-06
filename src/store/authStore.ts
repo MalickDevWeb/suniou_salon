@@ -1,8 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
 
 import { User } from "../types/domain";
+
+const { createJSONStorage, persist } =
+  require("zustand/middleware") as typeof import("zustand/middleware");
 
 type AuthState = {
   hydrated: boolean;
