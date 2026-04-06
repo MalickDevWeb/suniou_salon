@@ -1,13 +1,66 @@
-# suniou_salon frontend
+# Suniou Salon Mobile
 
-Frontend du projet SaaS salon de coiffure.
+Application mobile Expo pour reservation et e-commerce salon de coiffure.
 
-## Workflow Git
+## Stack
 
-Voir `CONTRIBUTING.md` pour la strategie de branches:
+- Expo SDK 54
+- React Native
+- React Navigation
+- Zustand
+- Axios
+- Expo Location
 
-- `main` = stable
-- `develop` = integration
-- `feature/*` = fonctionnalite
-- `release/*` = preparation mise en production
-- `hotfix/*` = correction urgente
+## Demarrage
+
+```bash
+npm install
+cp .env.example .env
+npm run start
+```
+
+## Variable d'environnement
+
+```env
+EXPO_PUBLIC_API_URL=http://10.0.2.2:3000/api
+EXPO_PROJECT_ID=
+```
+
+## Ecrans inclus
+
+- Authentification client ou salon
+- Accueil avec salons proches
+- Detail salon et choix de service
+- Reservation
+- Boutique et panier
+- Historique des commandes
+- Profil
+- Outils salon pour creer profil, service et produit
+
+## Deploiement Expo
+
+Source officielle Expo consultee:
+
+- create-expo-app / EAS Build: https://docs.expo.dev/build/introduction/
+- EAS Workflows: https://docs.expo.dev/eas/workflows/get-started/
+- EAS Update channels: https://docs.expo.dev/eas-update/deployment/
+
+Preparation:
+
+```bash
+npm install
+npx eas-cli@latest init
+```
+
+Puis:
+
+```bash
+npx eas-cli@latest build --platform android --profile preview
+npx eas-cli@latest build --platform android --profile production
+```
+
+Pour les mises a jour OTA apres build:
+
+```bash
+npx eas-cli@latest update --branch production --message "release mobile"
+```

@@ -1,0 +1,9 @@
+node_modules
+.expo
+dist
+web-build
+.env
+tsconfig.tsbuildinfo
+npm-debug.*
+yarn-debug.*
+yarn-error.*
