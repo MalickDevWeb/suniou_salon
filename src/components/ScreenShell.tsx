@@ -10,7 +10,7 @@ type Props = {
 
 export const ScreenShell = ({ children }: Props) => (
   <LinearGradient
-    colors={[colors.paper, "#f1e6d7", "#edd7c1"]}
+    colors={[colors.ivory, colors.powder, "#efe4e6"]}
     style={styles.container}
   >
     <View style={styles.orbLarge} />
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: 240,
     height: 240,
     borderRadius: radius.pill,
-    backgroundColor: "rgba(216, 176, 140, 0.32)"
+    backgroundColor: "rgba(200, 143, 159, 0.20)"
   },
   orbSmall: {
     position: "absolute",
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     width: 180,
     height: 180,
     borderRadius: radius.pill,
-    backgroundColor: "rgba(31, 111, 104, 0.10)"
+    backgroundColor: "rgba(216, 209, 215, 0.45)"
   },
   content: {
     flexGrow: 1,

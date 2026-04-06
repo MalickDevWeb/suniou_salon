@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: spacing.lg
   },
-  primary: { backgroundColor: colors.pine },
-  secondary: { backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
+  primary: { backgroundColor: colors.berry },
+  secondary: { backgroundColor: colors.white, borderWidth: 1, borderColor: colors.chrome },
   pressed: { transform: [{ scale: 0.99 }], opacity: 0.94 },
   disabled: { opacity: 0.75 },
   label: { fontFamily, fontSize: 16, fontWeight: "700" },

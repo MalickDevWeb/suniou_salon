@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs
   },
   input: {
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-    borderColor: colors.line,
+    backgroundColor: colors.ivory,
+    borderColor: colors.chrome,
     borderRadius: radius.md,
     borderWidth: 1,
     color: colors.ink,

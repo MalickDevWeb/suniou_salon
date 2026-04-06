@@ -19,6 +19,12 @@ export const colors = {
   steel: "#343944",
   rosewood: "#70505a",
   champagne: "#d9c2aa",
+  petal: "#c88f9f",
+  powder: "#f6edf1",
+  chrome: "#d8d1d7",
+  ivory: "#fcf8f7",
+  smoke: "#4f4b55",
+  berry: "#855866",
   success: "#2c6f60",
   shadow: "rgba(37, 24, 10, 0.12)"
 };

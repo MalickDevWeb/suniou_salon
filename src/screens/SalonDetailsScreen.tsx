@@ -27,13 +27,22 @@ export const SalonDetailsScreen = ({ route, navigation }: Props) => {
       <Text style={styles.title}>{salon.salon.name}</Text>
       <Text style={styles.subtitle}>{salon.salon.address}</Text>
       <LinearGradient
-        colors={[colors.night, colors.charcoal, colors.rosewood]}
+        colors={[colors.ivory, colors.powder, "#f5ecef"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.heroCard}
       >
         <Text style={styles.heroKicker}>Signature salon</Text>
-        <Text style={styles.heroTitle}>Tous les services sont visibles ici avant la connexion.</Text>
+        <Text style={styles.heroTitle}>Tous les services restent visibles dans une ambiance plus claire et plus raffinée.</Text>
+        <View style={styles.heroStations}>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <View key={index} style={styles.heroStation}>
+              <View style={styles.heroMirror} />
+              <View style={styles.heroShelf} />
+              <View style={styles.heroChair} />
+            </View>
+          ))}
+        </View>
         <View style={styles.statGrid}>
           <View style={styles.statBox}>
             <Text style={styles.statValue}>{salon.services.length}</Text>
@@ -85,16 +94,44 @@ const styles = StyleSheet.create({
   title: { color: colors.ink, fontFamily, fontSize: 34, fontWeight: "800", lineHeight: 40, marginBottom: spacing.xs },
   subtitle: { color: colors.muted, fontFamily, lineHeight: 22, marginBottom: spacing.lg },
   heroCard: {
+    borderColor: colors.chrome,
+    borderWidth: 1,
     borderRadius: 28,
     marginBottom: spacing.lg,
     overflow: "hidden",
     padding: spacing.xl
   },
-  heroKicker: { color: colors.champagne, fontFamily, fontSize: 12, fontWeight: "700", letterSpacing: 1, marginBottom: spacing.sm, textTransform: "uppercase" },
-  heroTitle: { color: colors.white, fontFamily, fontSize: 24, fontWeight: "800", lineHeight: 30, marginBottom: spacing.md },
+  heroKicker: { color: colors.berry, fontFamily, fontSize: 12, fontWeight: "700", letterSpacing: 1, marginBottom: spacing.sm, textTransform: "uppercase" },
+  heroTitle: { color: colors.ink, fontFamily, fontSize: 24, fontWeight: "800", lineHeight: 30, marginBottom: spacing.md },
+  heroStations: { flexDirection: "row", justifyContent: "space-between", marginBottom: spacing.lg },
+  heroStation: { alignItems: "center", flex: 1 },
+  heroMirror: {
+    backgroundColor: colors.white,
+    borderColor: colors.chrome,
+    borderRadius: 16,
+    borderWidth: 1,
+    height: 58,
+    marginBottom: spacing.xs,
+    width: "72%"
+  },
+  heroShelf: {
+    backgroundColor: colors.chrome,
+    borderRadius: 999,
+    height: 6,
+    marginBottom: spacing.sm,
+    width: "82%"
+  },
+  heroChair: {
+    backgroundColor: colors.petal,
+    borderRadius: 18,
+    height: 26,
+    width: 36
+  },
   statGrid: { flexDirection: "row", flexWrap: "wrap", marginHorizontal: -6 },
   statBox: {
-    backgroundColor: "rgba(255, 250, 245, 0.12)",
+    backgroundColor: "rgba(255, 255, 255, 0.82)",
+    borderColor: colors.chrome,
+    borderWidth: 1,
     borderRadius: 18,
     marginHorizontal: 6,
     marginBottom: spacing.sm,
@@ -102,13 +139,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md
   },
-  statValue: { color: colors.white, fontFamily, fontSize: 22, fontWeight: "800", marginBottom: 2 },
-  statLabel: { color: colors.champagne, fontFamily, fontSize: 12, textTransform: "uppercase" },
+  statValue: { color: colors.berry, fontFamily, fontSize: 22, fontWeight: "800", marginBottom: 2 },
+  statLabel: { color: colors.smoke, fontFamily, fontSize: 12, textTransform: "uppercase" },
   heading: { color: colors.gold, fontFamily, fontSize: 13, fontWeight: "700", letterSpacing: 0.8, marginBottom: spacing.sm, textTransform: "uppercase" },
   serviceCard: { backgroundColor: colors.white },
   serviceName: { color: colors.ink, fontFamily, fontSize: 20, fontWeight: "800", marginBottom: spacing.xs },
   serviceMeta: { color: colors.muted, fontFamily, marginBottom: spacing.sm },
-  serviceCta: { color: colors.pine, fontFamily, fontWeight: "800" },
+  serviceCta: { color: colors.berry, fontFamily, fontWeight: "800" },
   empty: { color: colors.muted, fontFamily },
   productRow: {
     alignItems: "center",
@@ -121,5 +158,5 @@ const styles = StyleSheet.create({
   productColumn: { flex: 1, paddingRight: spacing.md },
   productName: { color: colors.ink, fontFamily, fontWeight: "800", marginBottom: 2 },
   productMeta: { color: colors.muted, fontFamily, fontSize: 13 },
-  productPrice: { color: colors.gold, fontFamily, fontWeight: "800" }
+  productPrice: { color: colors.berry, fontFamily, fontWeight: "800" }
 });

@@ -29,11 +29,11 @@ export const AuthPromptCard = ({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
-    borderColor: colors.blush
+    backgroundColor: colors.ivory,
+    borderColor: colors.chrome
   },
   kicker: {
-    color: colors.ember,
+    color: colors.berry,
     fontFamily,
     fontSize: 12,
     fontWeight: "700",
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xs
   },
   description: {
-    color: colors.muted,
+    color: colors.smoke,
     fontFamily,
     lineHeight: 22
   },

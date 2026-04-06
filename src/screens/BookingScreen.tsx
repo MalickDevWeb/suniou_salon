@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, StyleSheet, Text } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -60,11 +60,19 @@ export const BookingScreen = ({ route, navigation }: Props) => {
       <Text style={styles.title}>{service.name}</Text>
       <Text style={styles.subtitle}>Choisis ton creneau puis confirme au dernier moment avec ton compte.</Text>
       <LinearGradient
-        colors={[colors.night, colors.charcoal, colors.rosewood]}
+        colors={[colors.ivory, colors.powder, "#f5ecef"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.summaryCard}
       >
+        <View style={styles.summaryScene}>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <View key={index} style={styles.summaryStation}>
+              <View style={styles.summaryMirror} />
+              <View style={styles.summarySeat} />
+            </View>
+          ))}
+        </View>
         <Text style={styles.summaryLabel}>Salon</Text>
         <Text style={styles.summaryValue}>{salon.salon.name}</Text>
         <Text style={styles.summaryMeta}>
@@ -105,14 +113,33 @@ const styles = StyleSheet.create({
   title: { color: colors.ink, fontFamily, fontSize: 34, fontWeight: "800", lineHeight: 40, marginBottom: spacing.xs },
   subtitle: { color: colors.muted, fontFamily, lineHeight: 22, marginBottom: spacing.lg },
   summaryCard: {
+    borderColor: colors.chrome,
+    borderWidth: 1,
     borderRadius: 28,
     marginBottom: spacing.md,
     overflow: "hidden",
     padding: spacing.xl
   },
-  summaryLabel: { color: colors.champagne, fontFamily, fontSize: 12, fontWeight: "700", marginBottom: spacing.xs, textTransform: "uppercase" },
-  summaryValue: { color: colors.white, fontFamily, fontSize: 22, fontWeight: "800", marginBottom: spacing.xs },
-  summaryMeta: { color: colors.champagne, fontFamily, fontWeight: "700", marginBottom: spacing.xs },
-  summaryAddress: { color: "rgba(255, 250, 245, 0.82)", fontFamily },
+  summaryScene: { flexDirection: "row", justifyContent: "space-between", marginBottom: spacing.lg },
+  summaryStation: { alignItems: "center", flex: 1 },
+  summaryMirror: {
+    backgroundColor: colors.white,
+    borderColor: colors.chrome,
+    borderRadius: 12,
+    borderWidth: 1,
+    height: 26,
+    marginBottom: spacing.xs,
+    width: 34
+  },
+  summarySeat: {
+    backgroundColor: colors.petal,
+    borderRadius: 999,
+    height: 10,
+    width: 18
+  },
+  summaryLabel: { color: colors.berry, fontFamily, fontSize: 12, fontWeight: "700", marginBottom: spacing.xs, textTransform: "uppercase" },
+  summaryValue: { color: colors.ink, fontFamily, fontSize: 22, fontWeight: "800", marginBottom: spacing.xs },
+  summaryMeta: { color: colors.smoke, fontFamily, fontWeight: "700", marginBottom: spacing.xs },
+  summaryAddress: { color: colors.smoke, fontFamily },
   helper: { color: colors.muted, fontFamily, marginBottom: spacing.md }
 });

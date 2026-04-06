@@ -14,8 +14,8 @@ export const SectionCard = ({ children, style }: Props) => (
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgba(255, 250, 245, 0.94)",
-    borderColor: colors.line,
+    backgroundColor: "rgba(255, 255, 255, 0.96)",
+    borderColor: colors.chrome,
     borderRadius: radius.lg,
     borderWidth: 1,
     marginBottom: spacing.md,

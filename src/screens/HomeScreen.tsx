@@ -58,16 +58,25 @@ export const HomeScreen = ({ navigation }: Props) => {
       <Text style={styles.title}>Des salons jolis, rapides a charger, et prets pour reserver en quelques tapes.</Text>
       <Text style={styles.subtitle}>{message}</Text>
       <LinearGradient
-        colors={[colors.night, colors.charcoal, colors.rosewood]}
+        colors={[colors.ivory, colors.powder, "#f4eaed"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.heroPanel}
       >
-        <Text style={styles.heroKicker}>Ambiance studio</Text>
-        <Text style={styles.heroTitle}>Une vitrine plus premium, inspiree des salons elegants et des details bien cadres.</Text>
+        <Text style={styles.heroKicker}>Salon lumineux</Text>
+        <Text style={styles.heroTitle}>Une vitrine claire, feminine et premium, inspiree des fauteuils poudres et des grands miroirs de salon.</Text>
         <Text style={styles.heroText}>
           Explore sans compte, compare les prestations et connecte-toi seulement a la derniere etape pour confirmer.
         </Text>
+        <View style={styles.studioRow}>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <View key={index} style={styles.station}>
+              <View style={styles.stationMirror} />
+              <View style={styles.stationCounter} />
+              <View style={styles.stationChair} />
+            </View>
+          ))}
+        </View>
         <View style={styles.metricsRow}>
           <View style={styles.metricBox}>
             <Text style={styles.metricValue}>{salons.length}</Text>
@@ -94,7 +103,7 @@ export const HomeScreen = ({ navigation }: Props) => {
         >
           <SectionCard style={styles.salonCard}>
             <LinearGradient
-              colors={[colors.charcoal, colors.steel]}
+              colors={[colors.white, colors.powder]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.salonBanner}
@@ -109,7 +118,15 @@ export const HomeScreen = ({ navigation }: Props) => {
                     : "Liste complete"}
                 </Text>
               </View>
-              <Text style={styles.bannerTitle}>Cadre soigne, lumiere maitrisee, services visibles tout de suite.</Text>
+              <View style={styles.bannerStations}>
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <View key={index} style={styles.bannerStation}>
+                    <View style={styles.bannerMirror} />
+                    <View style={styles.bannerSeat} />
+                  </View>
+                ))}
+              </View>
+              <Text style={styles.bannerTitle}>Cadre soigne, miroirs clairs, fauteuils poudres, services visibles tout de suite.</Text>
             </LinearGradient>
             <Text style={styles.salon}>{entry.salon.name}</Text>
             <Text style={styles.address}>{entry.salon.address}</Text>
@@ -136,17 +153,45 @@ const styles = StyleSheet.create({
   title: { color: colors.ink, fontFamily, fontSize: 34, fontWeight: "800", lineHeight: 40, marginBottom: spacing.sm },
   subtitle: { color: colors.muted, fontFamily, fontSize: 16, marginBottom: spacing.lg },
   heroPanel: {
+    borderColor: colors.chrome,
+    borderWidth: 1,
     borderRadius: 28,
     marginBottom: spacing.lg,
     overflow: "hidden",
     padding: spacing.xl
   },
-  heroKicker: { color: colors.champagne, fontFamily, fontSize: 12, fontWeight: "700", letterSpacing: 1, marginBottom: spacing.sm, textTransform: "uppercase" },
-  heroTitle: { color: colors.white, fontFamily, fontSize: 28, fontWeight: "800", lineHeight: 34, marginBottom: spacing.sm },
-  heroText: { color: "rgba(255, 250, 245, 0.82)", fontFamily, lineHeight: 22, marginBottom: spacing.md },
+  heroKicker: { color: colors.berry, fontFamily, fontSize: 12, fontWeight: "700", letterSpacing: 1, marginBottom: spacing.sm, textTransform: "uppercase" },
+  heroTitle: { color: colors.ink, fontFamily, fontSize: 28, fontWeight: "800", lineHeight: 34, marginBottom: spacing.sm },
+  heroText: { color: colors.smoke, fontFamily, lineHeight: 22, marginBottom: spacing.md },
+  studioRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: spacing.lg },
+  station: { alignItems: "center", flex: 1 },
+  stationMirror: {
+    backgroundColor: "rgba(255,255,255,0.72)",
+    borderColor: colors.chrome,
+    borderRadius: 18,
+    borderWidth: 1,
+    height: 70,
+    marginBottom: spacing.xs,
+    width: "76%"
+  },
+  stationCounter: {
+    backgroundColor: colors.chrome,
+    borderRadius: 999,
+    height: 8,
+    marginBottom: spacing.sm,
+    width: "86%"
+  },
+  stationChair: {
+    backgroundColor: colors.petal,
+    borderRadius: 18,
+    height: 30,
+    width: 44
+  },
   metricsRow: { flexDirection: "row", flexWrap: "wrap", marginHorizontal: -6 },
   metricBox: {
-    backgroundColor: "rgba(255, 250, 245, 0.12)",
+    backgroundColor: "rgba(255, 255, 255, 0.76)",
+    borderColor: colors.chrome,
+    borderWidth: 1,
     borderRadius: 18,
     marginHorizontal: 6,
     marginBottom: spacing.sm,
@@ -154,12 +199,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md
   },
-  metricValue: { color: colors.white, fontFamily, fontSize: 20, fontWeight: "800", marginBottom: 2 },
-  metricLabel: { color: colors.champagne, fontFamily, fontSize: 12, textTransform: "uppercase" },
+  metricValue: { color: colors.berry, fontFamily, fontSize: 20, fontWeight: "800", marginBottom: 2 },
+  metricLabel: { color: colors.smoke, fontFamily, fontSize: 12, textTransform: "uppercase" },
   sectionTitle: { color: colors.gold, fontFamily, fontSize: 13, fontWeight: "700", letterSpacing: 0.8, marginBottom: spacing.sm, textTransform: "uppercase" },
   pressed: { opacity: 0.96, transform: [{ scale: 0.995 }] },
   salonCard: { backgroundColor: colors.white },
   salonBanner: {
+    borderColor: colors.chrome,
+    borderWidth: 1,
     borderRadius: 18,
     marginBottom: spacing.md,
     padding: spacing.md
@@ -167,21 +214,38 @@ const styles = StyleSheet.create({
   cardHeader: { alignItems: "center", flexDirection: "row", justifyContent: "space-between", marginBottom: spacing.md },
   identityPill: {
     alignItems: "center",
-    backgroundColor: "rgba(245, 221, 208, 0.16)",
+    backgroundColor: colors.berry,
     borderRadius: 18,
     justifyContent: "center",
     minWidth: 52,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs
   },
-  identityText: { color: colors.champagne, fontFamily, fontWeight: "800" },
-  distance: { color: colors.champagne, fontFamily, fontWeight: "700" },
-  bannerTitle: { color: colors.white, fontFamily, fontSize: 16, fontWeight: "700", lineHeight: 22 },
+  identityText: { color: colors.white, fontFamily, fontWeight: "800" },
+  distance: { color: colors.smoke, fontFamily, fontWeight: "700" },
+  bannerStations: { flexDirection: "row", justifyContent: "space-between", marginBottom: spacing.md },
+  bannerStation: { alignItems: "center", flex: 1 },
+  bannerMirror: {
+    backgroundColor: colors.ivory,
+    borderColor: colors.chrome,
+    borderRadius: 12,
+    borderWidth: 1,
+    height: 24,
+    marginBottom: spacing.xs,
+    width: 34
+  },
+  bannerSeat: {
+    backgroundColor: colors.petal,
+    borderRadius: 999,
+    height: 10,
+    width: 18
+  },
+  bannerTitle: { color: colors.smoke, fontFamily, fontSize: 16, fontWeight: "700", lineHeight: 22 },
   salon: { color: colors.ink, fontFamily, fontSize: 22, fontWeight: "800", marginBottom: spacing.xs },
   address: { color: colors.muted, fontFamily, lineHeight: 21, marginBottom: spacing.md },
   tagsWrap: { flexDirection: "row", flexWrap: "wrap", marginBottom: spacing.md, marginHorizontal: -4 },
   tag: {
-    backgroundColor: colors.mist,
+    backgroundColor: colors.powder,
     borderRadius: 16,
     marginHorizontal: 4,
     marginBottom: spacing.xs,
@@ -189,6 +253,6 @@ const styles = StyleSheet.create({
     paddingVertical: 6
   },
   tagText: { color: colors.ink, fontFamily, fontSize: 12, fontWeight: "700" },
-  meta: { color: colors.gold, fontFamily, fontWeight: "700", marginBottom: spacing.xs },
-  cta: { color: colors.pine, fontFamily, fontWeight: "800" }
+  meta: { color: colors.berry, fontFamily, fontWeight: "700", marginBottom: spacing.xs },
+  cta: { color: colors.berry, fontFamily, fontWeight: "800" }
 });
