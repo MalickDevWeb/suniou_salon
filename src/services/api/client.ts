@@ -1,9 +1,15 @@
 import axios from "axios";
+import { Platform } from "react-native";
 
 import { useAuthStore } from "../../store/authStore";
 
-const baseURL =
-  process.env.EXPO_PUBLIC_API_URL?.trim() || "http://10.0.2.2:3000/api";
+const fallbackBaseURL =
+  Platform.OS === "android"
+    ? "http://10.0.2.2:3001/api"
+    : "http://127.0.0.1:3001/api";
+
+export const baseURL =
+  process.env.EXPO_PUBLIC_API_URL?.trim() || fallbackBaseURL;
 
 export const api = axios.create({ baseURL, timeout: 10000 });
 

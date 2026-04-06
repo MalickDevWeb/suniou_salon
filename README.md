@@ -22,8 +22,20 @@ npm run start
 ## Variable d'environnement
 
 ```env
-EXPO_PUBLIC_API_URL=http://10.0.2.2:3000/api
+EXPO_PUBLIC_API_URL=http://127.0.0.1:3001/api
 EXPO_PROJECT_ID=
+```
+
+Pour le developpement local:
+
+- web ou iOS simulateur: `http://127.0.0.1:3001/api`
+- Android Emulator: `http://10.0.2.2:3001/api`
+- telephone physique: remplace par l'IP LAN de ta machine, par exemple `http://192.168.1.20:3001/api`
+
+Smoke test reseau local:
+
+```bash
+EXPO_PUBLIC_API_URL=http://127.0.0.1:3001/api npm run smoke:local
 ```
 
 ## Ecrans inclus

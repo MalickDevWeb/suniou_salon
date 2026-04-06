@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import type { ExpoConfig } from 'expo/config'
 
-const projectId =process.env.EXPO_PROJECT_ID
+const projectId = process.env.EXPO_PROJECT_ID
 
 const config: ExpoConfig = {
   name: 'Suniou Salon',
@@ -36,7 +36,7 @@ const config: ExpoConfig = {
     favicon: './assets/favicon.png',
   },
   extra: {
-    apiUrl: process.env.EXPO_PUBLIC_API_URL ?? 'http://10.0.2.2:3000/api',
+    apiUrl: process.env.EXPO_PUBLIC_API_URL ?? 'http://127.0.0.1:3001/api',
     ...(projectId ? { eas: { projectId } } : {}),
   },
 }
