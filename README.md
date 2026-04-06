@@ -14,6 +14,7 @@ Application mobile Expo pour reservation et e-commerce salon de coiffure.
 ## Demarrage
 
 ```bash
+nvm use 20.19.4
 npm install
 cp .env.example .env
 npm run start
@@ -36,6 +37,33 @@ Smoke test reseau local:
 
 ```bash
 EXPO_PUBLIC_API_URL=http://127.0.0.1:3001/api npm run smoke:local
+```
+
+## Voir l'application
+
+Navigateur web:
+
+```bash
+npm run web
+```
+
+Puis ouvrir l'URL Expo affichee, par exemple `http://localhost:8084`.
+
+Emulateur Android:
+
+1. Installer `Android Emulator` et une image `system-images;android-34;google_apis;x86_64`
+2. Creer un AVD `Pixel_6_API_34`
+3. Lancer l'emulateur
+4. Executer:
+
+```bash
+npm run android
+```
+
+Si tu utilises un appareil Android physique, active le debogage USB puis verifie:
+
+```bash
+adb devices
 ```
 
 ## Ecrans inclus
